@@ -7,6 +7,11 @@ process.env.MONGO_URL = (process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPEN
 process.env.PORT = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 process.env.BIND_IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
+if (!process.env.ROOT_URL.match(/^http:\/\//)) {
+	process.env.ROOT_URL = 'http://' + process.env.ROOT_URL
+}
+
+
 // Show connection details on startup
 console.log("MONGO_URL IS: " + process.env.MONGO_URL);
 console.log("ROOT_URL IS: " + process.env.ROOT_URL);
